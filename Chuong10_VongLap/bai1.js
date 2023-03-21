@@ -42,14 +42,13 @@ const students = [
 // 2Thêm sinh viên
 // 3Sửa sinh viên
 //4 Xóa sinh viên
-
+// var doDaiMang = students.length;
 function inDSSV(arr) {
     var doDaiMang = arr.length;
     var mang = [];
     for (var i = 0; i < doDaiMang; i++) {
         console.log(mang = arr[i]);
     }
-
     return (mang);
 }
 
@@ -70,7 +69,6 @@ function themSV(arr) {
     arr.push({ id, name, address });
     return arr;
 
-
 }
 function suaSV(arr) {
     var doDaiMang = arr.length;
@@ -81,15 +79,22 @@ function suaSV(arr) {
     } while (idd > doDaiMang);
     for (var i = 0; i <= doDaiMang; i++) {
         if (idd == arr[i].id) {
-            var ten = prompt('Nhập tên sv :');
-            var diachi = prompt('Nhập địa chỉ :')
+            var tenCu = arr[i].name;
+            var diaChiCu = arr[i].address;
+            var ten = prompt('Nhập tên sv : ', tenCu);
+            var diachi = prompt('Nhập địa chỉ :', diaChiCu);
             arr[i].name = ten;
             arr[i].address = diachi;
             return arr;
         }
     }
+}
 
-
+function searchIndex(number, array) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].id == number) return i;
+    }
+    return -1;
 }
 
 function xoaSV(arr) {
@@ -99,14 +104,20 @@ function xoaSV(arr) {
         idd = Number(idd);
 
     } while (idd > doDaiMang);
-    for (var i = 0; i <= doDaiMang; i++) {
-        if (idd == arr[i].id) {
-            delete arr[i];
-            console.log(arr);
-            return;
-        }
+    // for (var i = 0; i < doDaiMang; i++) {
+    //     if (idd == arr[i].id) {
+    //         delete arr[i];
+    //         console.log(arr);
+    //         return arr;
+    //     }
+    // }
 
-    }
+
+
+    // idd=idd-1;
+    var vitri = searchIndex(idd, arr);
+    arr.splice(vitri, 1);
+    // console.log(vitri);
 }
 
 function menu() {
@@ -128,16 +139,16 @@ function menu() {
                 break;
             case 3:
                 suaSV(students);
-                console.log(" \n\n\n Danh sách sinh viên  sau khi sửa ");
+                console.log(" \n\n\nDanh sách sinh viên  sau khi sửa ");
                 inDSSV(students);
                 break;
             case 4:
                 xoaSV(students);
-                console.log(" \n\n\n Danh sách sinh viên  sau khi xoá: ");
+                console.log(" \n\n\nDanh sách sinh viên  sau khi xoá: ");
                 inDSSV(students);
                 break;
             default:
-                console.log("\n\n\n\tGood bye 😭");
+                console.log("\n\n\n\t Good bye 😭 ");
                 return;
         }
     } while (soChon != 1 || soChon != 2 || soChon != 3 || soChon != 4)
