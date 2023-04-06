@@ -314,7 +314,7 @@ for (var i = 0; i < aElement.length; i++) {
 
 var ulElement = document.querySelector('ul');
 ulElement.onmousedown = function (e) {
-    e.preventDefault();
+ 
 }
 
 //ví dụ về stopPropagation dòng 89 

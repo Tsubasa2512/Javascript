@@ -85,7 +85,7 @@ console.log(isQN) //false
 /*
 var isDN = students.some( function (student,index){
     console.log(index) //vị trí tìm thấy, dừng
-    return student.address == ="da nang";
+    return student.address ==="da nang";
 });
 console.log(isDN)   // true
 */
