@@ -67,6 +67,7 @@ students.forEach(function (student) {
     return listStudents;
 })
 console.log(listStudents);
+var idd = listStudents.length +1;
 
 //lấy giá trị id
 function getClassNameById(id) {
@@ -138,9 +139,14 @@ function addStudent(array) {
 
     var getName = document.querySelector('input[name="name"]');
     var getClass = document.querySelector('select[name="class"]');
-    var idd = array.length + 1;
+   
+    
+    idd=Number(idd);
+    console.log(idd );
+   
     var mangSV;
-
+    var stName = document.querySelector('input[name="name"]');
+    var classInfo = document.querySelector('select[name="class"]');
     render(array);
     btn.onclick = function (el) {
         el.preventDefault();
@@ -154,8 +160,10 @@ function addStudent(array) {
         array.unshift(newArray);
         mangSV = array;
         console.log(mangSV);
+        stName.value = '';
+        classInfo.value = '';
         render(mangSV);
-        return mangSV;
+        return idd++;
     }
 }
 
@@ -195,14 +203,14 @@ function onUpdate(id, classId) {
             className: getClassNameById(classInfo.value)
         }
         console.log(edSt);
-        listStudents.splice((idx ), 1, edSt);
+        listStudents.splice((idx), 1, edSt);
         editBtnElement.parentElement.appendChild(btn);
         editBtnElement.remove();
         stName.value = '';
         classInfo.value = '';
         render(listStudents);
 
-
+        return idd;
     }
 
 }
@@ -223,6 +231,7 @@ function onDelete(id) {
         }
         addStudent(listStudents);
     }
+    return idd;
 }
 
 // lấy giá trị ô input
