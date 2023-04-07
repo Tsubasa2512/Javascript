@@ -154,12 +154,18 @@ function addStudent(array) {
 
                 errorName.setAttribute('style', 'display:block;color:red');
                 errorName.innerText = 'Yêu lòng nhập tên SV';
+                if (classInfo.value != "") {
+                    errorClass.innerText = '';
+
+                }
 
             };
             if (classInfo.value == '') {
                 errorClass.setAttribute('style', 'display:block;color:red');
                 errorClass.innerText = 'Yêu lòng chọn lớp cho SV';
-
+                if (stName.value != "") {
+                    errorName.innerText = "";
+                }
             };
         }
         else {
