@@ -67,7 +67,7 @@ students.forEach(function (student) {
     return listStudents;
 })
 console.log(listStudents);
-var idd = listStudents.length +1;
+var idd = listStudents.length + 1;
 
 //lấy giá trị id
 function getClassNameById(id) {
@@ -126,12 +126,7 @@ function chonLop(array) {
 }
 
 
-//lấy id
-function layIDClass(id) {
-    return classList.find(function (el) {
-        return el.id === Number(id);
-    }).name;
-}
+
 
 
 //add sv
@@ -139,31 +134,59 @@ function addStudent(array) {
 
     var getName = document.querySelector('input[name="name"]');
     var getClass = document.querySelector('select[name="class"]');
-   
-    
-    idd=Number(idd);
-    console.log(idd );
-   
+
+
+    idd = Number(idd);
+    console.log(idd);
+
     var mangSV;
     var stName = document.querySelector('input[name="name"]');
     var classInfo = document.querySelector('select[name="class"]');
     render(array);
     btn.onclick = function (el) {
         el.preventDefault();
-        var newArray = {
-            id: idd,
-            studentName: getName.value,
-            classId: Number(getClass.value),
-            className: layIDClass(getClass.value)
+        var errorName = getName.parentElement.querySelector(' .form-message');
+        var errorClass = getClass.parentElement.querySelector('.thongbao');
+
+        if (stName.value == '' || classInfo.value == '') {
+
+            if (stName.value == '') {
+
+                errorName.setAttribute('style', 'display:block;color:blue');
+                errorName.innerText = 'Yêu lòng nhập tên SV';
+
+            };
+            if (classInfo.value == '') {
+                errorClass.setAttribute('style', 'display:block;color:blue');
+                errorClass.innerText = 'Yêu lòng chọn lớp cho SV';
+
+            };
         }
-        //chèn đầu
-        array.unshift(newArray);
-        mangSV = array;
-        console.log(mangSV);
-        stName.value = '';
-        classInfo.value = '';
-        render(mangSV);
-        return idd++;
+        else {
+            //lấy id
+            function layIDClass(id) {
+                return classList.find(function (el) {
+                    return el.id === Number(id);
+                }).name;
+            };
+
+            var newArray = {
+                id: idd,
+                studentName: getName.value,
+                classId: Number(getClass.value),
+                className: layIDClass(getClass.value)
+            }
+            //chèn đầu
+            array.unshift(newArray);
+            mangSV = array;
+            console.log(mangSV);
+            stName.value = '';
+            classInfo.value = '';
+            errorName.innerText = '';
+            errorClass.innerText = '';
+            render(mangSV);
+            return idd++;
+        }
     }
 }
 
@@ -258,7 +281,6 @@ function checkChoose(input) {
     input.onblur = function () {
         if (input.value === '') {
             errorElement.setAttribute('style', 'display:block;color:blue');
-            // errorElement.setAttribute('style', 'display: block; color: red; font-style: italic;');
             errorElement.innerText = 'Yêu lòng chọn lớp cho SV';
         } else {
             errorElement.setAttribute('style', 'display: none;');
@@ -271,5 +293,3 @@ function checkChoose(input) {
 
 chonLop(classList);
 addStudent(listStudents);
-checkInput(getName);
-checkChoose(getClass);
