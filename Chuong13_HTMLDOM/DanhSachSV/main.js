@@ -155,6 +155,7 @@ function addStudent(array) {
         mangSV = array;
         console.log(mangSV);
         render(mangSV);
+        return mangSV;
     }
 }
 
@@ -164,7 +165,10 @@ function onUpdate(id, classId) {
     var student = listStudents.find(function (st) {
         return st.id === id;
     })
-    var idx = student.id;
+    // var idx = student.id;
+    var idx = listStudents.findIndex(function (student) {
+        return student.id === id;
+    })
     console.log(idx);
     console.log(student.id);
     //gắn giá trị vào ô input
@@ -191,7 +195,7 @@ function onUpdate(id, classId) {
             className: getClassNameById(classInfo.value)
         }
         console.log(edSt);
-        listStudents.splice(idx - 1, 1, edSt);
+        listStudents.splice((idx ), 1, edSt);
         editBtnElement.parentElement.appendChild(btn);
         editBtnElement.remove();
         stName.value = '';
