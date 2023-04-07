@@ -152,12 +152,12 @@ function addStudent(array) {
 
             if (stName.value == '') {
 
-                errorName.setAttribute('style', 'display:block;color:blue');
+                errorName.setAttribute('style', 'display:block;color:red');
                 errorName.innerText = 'Yêu lòng nhập tên SV';
 
             };
             if (classInfo.value == '') {
-                errorClass.setAttribute('style', 'display:block;color:blue');
+                errorClass.setAttribute('style', 'display:block;color:red');
                 errorClass.innerText = 'Yêu lòng chọn lớp cho SV';
 
             };
@@ -177,7 +177,7 @@ function addStudent(array) {
                 className: layIDClass(getClass.value)
             }
             //chèn đầu
-            array.unshift(newArray);
+            array.push(newArray);
             mangSV = array;
             console.log(mangSV);
             stName.value = '';
